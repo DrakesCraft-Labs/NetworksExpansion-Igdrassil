@@ -16,7 +16,6 @@ repositories {
     mavenCentral()
     maven("https://repo.papermc.io/repository/maven-public/")
     maven("https://jitpack.io")
-    maven("https://repo.jeff-media.com/public")
     maven("https://nexus.neetgames.com/repository/maven-public")
     maven("https://repo.bg-software.com/repository/api/")
     maven("https://repo.rosewooddev.io/repository/public/")
@@ -27,6 +26,7 @@ repositories {
     maven("https://repo.alessiodp.com/releases/")
     maven("https://maven.enginehub.org/repo/")
     maven("https://repo.alessiodp.com/releases")
+    maven("https://repo.jeff-media.com/public")
 }
 
 dependencies {
@@ -38,7 +38,7 @@ dependencies {
     implementation("org.bstats:bstats-bukkit:3.0.2")
     implementation("com.jeff-media:MorePersistentDataTypes:2.4.0")
     implementation("dev.sefiraat:SefiLib:0.2.6")
-    implementation("net.byteflux:libby-bukkit:1.3.1")
+    implementation("net.byteflux:libby-bukkit:1.3.2")
 
     compileOnly("com.google.code.findbugs:annotations:3.0.1u2") {
         exclude("net.jcip", "jcip-annotations")
