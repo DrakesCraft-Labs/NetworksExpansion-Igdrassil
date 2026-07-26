@@ -1,7 +1,6 @@
 plugins {
     java
     id("com.gradleup.shadow") version "9.0.0"
-    id("com.diffplug.spotless") version "6.25.0"
 }
 
 group = "com.ytdd9527.networksexpansion"
@@ -26,6 +25,7 @@ repositories {
     maven("https://repo.codemc.org/repository/maven-public/")
     maven("https://oss.sonatype.org/content/groups/public/")
     maven("https://repo.alessiodp.com/releases/")
+    maven("https://maven.enginehub.org/repo/")
 }
 
 dependencies {
@@ -68,15 +68,11 @@ dependencies {
 
 tasks {
     compileJava {
-        options.encoding = "UTF-8"
         options.compilerArgs.add("-Xlint:-removal")
     }
 
     processResources {
-        filesMatching("**/*.*") {
-            expand(project.properties)
-        }
-        filesMatching("tags/*.json") {
+        filesMatching("plugin.yml") {
             expand(project.properties)
         }
     }
@@ -98,15 +94,6 @@ tasks {
 
         duplicatesStrategy = DuplicatesStrategy.EXCLUDE
         mergeServiceFiles()
-    }
-
-    spotless {
-        java {
-            palantirJavaFormat("2.38.0")
-
-            removeUnusedImports()
-            formatAnnotations()
-        }
     }
 
     build {
