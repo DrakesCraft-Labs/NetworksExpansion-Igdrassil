@@ -26,6 +26,7 @@ repositories {
     maven("https://oss.sonatype.org/content/groups/public/")
     maven("https://repo.alessiodp.com/releases/")
     maven("https://maven.enginehub.org/repo/")
+    maven("https://repo.alessiodp.com/releases")
 }
 
 dependencies {
