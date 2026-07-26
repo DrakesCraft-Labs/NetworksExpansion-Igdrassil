@@ -1249,11 +1249,6 @@ items:
     name: "<color_random_string>网络拓展版本信息"
     lore:
       - "<warning> 阅读此声明前，请务必先阅读网络拓展补充说明。"
-      - "<passive> 此页面可以作为您反馈网络拓展相关问题时需要提供的版本信息。"
-      - "<passive> 网络拓展版本: v2.1.108"
-      - "<passive> 版本状态: 稳定版"
-      - "<passive> 版本更新时间: 2026-7-11 11:52:52"
-      - "<passive> 开发状态: 更新中"
       - "<passive> 开发者（们）: ytdd9527, balugaq"
       - "<passive> 开发者 GitHub 页面: <click_info>https://github.com/ytdd9527"
       - "<passive> 开发者 GitHub 页面: <click_info>https://github.com/balugaq"
@@ -1262,7 +1257,6 @@ items:
       - "<passive> 感谢为网络拓展开发贡献过自己的 Issue, PR, commit 的人!"
       - "<passive> 感谢为网络拓展开发提供建议的所有人!"
       - "<passive> 感谢为网络拓展开发提供建议的 Utoboy, TouRuya, haiman233, yitoudaidai, tinalness, matl114 等玩家!"
-      - "<passive> 再次感谢 :>"
   NTW_EXPANSION_ANNOUNCE_10:
     name: "<color_random_string>网络拓展游玩体验声明"
     lore:
@@ -1275,8 +1269,6 @@ items:
       - "<passive> 在此举出一个<warning>可能<passive>复现的例子: 放置A机器，在B槽放置C数量的D物品，挖掉并更换为E机器，在B槽放置C数量的D物品，"
       - "<passive> 服务器重启后，E机器中的D物品消失。"
       - "<passive> 以上原因与网络拓展并无太多关系，建议游玩时应保持理智，不要盲目对网络拓展进行言语攻击。"
-      - "<passive> 近日也有诸如\"用网络拓展的合成机不会丢蓝图\"等<warning>谣言<passive>传播。"
-      - "<passive> 希望诸位擦亮眼睛，不要被诸如此类的谣言迷惑。"
       - "<passive> 声明到此结束。"
 
   NTW_EXPANSION_WORKBENCH:
