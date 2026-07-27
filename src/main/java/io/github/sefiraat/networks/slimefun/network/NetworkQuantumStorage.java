@@ -741,6 +741,7 @@ public class NetworkQuantumStorage extends SpecialSlimefunItem implements Distin
                             player.getName(),
                             storage.getLocation()
                         ));
+                    player.sendMessage(Lang.getString("messages.unsupported-operation.quantum_storage.dangerous_operation"));
                     return true;
                 }
             }

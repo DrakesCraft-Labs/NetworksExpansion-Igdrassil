@@ -282,7 +282,7 @@ public abstract class AbstractGrid extends NetworkObject {
         if (cache.getEntriesCache() != null) {
             return cache.getEntriesCache();
         }
-        var entries = networkRoot.getAllNetworkItemsLongType().entrySet().stream()
+        var entries = networkRoot.getAllNetworkItemsLongTypeView().entrySet().stream()
             .filter(entry -> {
                 if (cache.getFilter() == null) {
                     return true;
@@ -585,7 +585,7 @@ public abstract class AbstractGrid extends NetworkObject {
         }
     }
 
-    protected static void updateSortOrder(GridCache gridCache, ClickAction action, @Range(from = 1, to = 4) int limit) {
+    public static void updateSortOrder(GridCache gridCache, ClickAction action, @Range(from = 1, to = 4) int limit) {
         if (action.isShiftClicked() && !action.isRightClicked()) {
             gridCache.setSortOrder(GridCache.SortOrder.ALPHABETICAL);
         } else {

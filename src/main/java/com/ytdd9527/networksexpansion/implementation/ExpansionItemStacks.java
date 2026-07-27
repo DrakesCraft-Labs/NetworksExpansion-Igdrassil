@@ -513,6 +513,8 @@ public class ExpansionItemStacks {
         Lang.getItem("NTW_EXPANSION_FACING_PRESETTER", Material.GLASS), Theme.MACHINE);
     public static final SlimefunItemStack SUPER_TRASH = Theme.themedSlimefunItemStack(
         Lang.getItem("NTW_EXPANSION_SUPER_TRASH", Material.BLACK_WOOL), Theme.MACHINE);
+    public static final SlimefunItemStack LINKER_GRID = Theme.themedSlimefunItemStack(
+        Lang.getItem("NTW_EXPANSION_LINKER_GRID", Material.JUKEBOX), Theme.MACHINE);
 
 
     public static @NotNull ItemStack enchanted(@NotNull Material material) {

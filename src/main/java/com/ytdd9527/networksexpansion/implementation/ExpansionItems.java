@@ -1217,8 +1217,12 @@ public class ExpansionItems {
     public static final SpecialSlimefunItem AUTHOR_YITOUDAIDAI =
         new AuthorHead(ExpansionItemsMenus.MENU_TROPHY, ExpansionItemStacks.AUTHOR_YITOUDAIDAI);
 
-    public static final SpecialSlimefunItem AUTHOR_TINALNESS =
-        new AuthorHead(ExpansionItemsMenus.MENU_TROPHY, ExpansionItemStacks.AUTHOR_TINALNESS);
+    public static final SpecialSlimefunItem AUTHOR_TINALNESS = new AuthorHead(
+        ExpansionItemsMenus.MENU_TROPHY,
+        ExpansionItemStacks.AUTHOR_TINALNESS,
+        ExpansionWorkbench.TYPE,
+        ExpansionRecipes.AUTHOR_TINALNESS
+    );
 
     public static final DueMachineConfigurator DUE_MACHINE_CONFIGURATOR = new DueMachineConfigurator(
         ExpansionItemsMenus.MENU_ITEMS,

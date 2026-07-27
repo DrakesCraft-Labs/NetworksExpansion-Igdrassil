@@ -1,7 +1,10 @@
 package com.balugaq.netex.utils;
 
+import com.ytdd9527.networksexpansion.implementation.machines.networks.advanced.SmartNetworkCraftingGridNewStyle;
+import io.github.sefiraat.networks.Networks;
 import io.github.sefiraat.networks.utils.StackUtils;
 import lombok.experimental.UtilityClass;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
@@ -104,5 +107,12 @@ public class InventoryUtil {
         }
 
         return -1;
+    }
+
+    public static void give(Player player, ItemStack stack) {
+        HashMap<Integer, ItemStack> remnant = InventoryUtil.addItem(player, stack);
+        remnant.values().stream().findFirst().ifPresent(r2 -> Bukkit.getScheduler().runTask(Networks.getInstance(), () -> {
+            player.getWorld().dropItem(player.getLocation(), r2);
+        }));
     }
 }

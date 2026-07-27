@@ -117,7 +117,7 @@ public class Networks extends JavaPlugin implements SlimefunAddon {
 
         getLogger().info("Loading language");
         this.configManager = new ConfigManager();
-        localizationService = new LocalizationService(this);
+        this.localizationService = new LocalizationService(this);
         String language = configManager.getLanguage();
         try {
             localizationService.addLanguage(language);
@@ -126,7 +126,7 @@ public class Networks extends JavaPlugin implements SlimefunAddon {
             getLogger().log(Level.WARNING, "Failed to load language " + language, e);
         }
 
-        localizationService.addLanguage(DEFAULT_LANGUAGE);
+        localizationService.addDefaultLanguage(DEFAULT_LANGUAGE);
         getLogger().info("Default language " + DEFAULT_LANGUAGE + " loaded successfully.");
 
         superHead();

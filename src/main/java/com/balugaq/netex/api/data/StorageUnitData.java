@@ -352,7 +352,7 @@ public class StorageUnitData {
         int amount = itemRequest.getAmount();
         for (ItemContainer itemContainer : getStoredItems()) {
             int containerAmount = itemContainer.getAmount();
-            if (StackUtils.itemsMatch(itemContainer.getSampleDirectly(), item)) {
+            if (StackUtils.itemsMatch(itemRequest, itemContainer.getSampleDirectly())) {
                 int take = Math.min(amount, containerAmount);
                 if (take <= 0) {
                     break;
@@ -456,7 +456,7 @@ public class StorageUnitData {
 
                 ItemContainer itemContainer = stored.get(i);
                 int containerAmount = itemContainer.getAmount();
-                if (StackUtils.itemsMatch(itemContainer.getSampleDirectly(), item)) {
+                if (StackUtils.itemsMatch(itemRequest, itemContainer.getSampleDirectly())) {
                     int take = Math.min(amount, containerAmount);
                     if (take <= 0) {
                         if (!contentLocked) {
@@ -495,7 +495,7 @@ public class StorageUnitData {
         for (int i = 0; i < stored.size(); i++) {
             ItemContainer itemContainer = stored.get(i);
             int containerAmount = itemContainer.getAmount();
-            if (StackUtils.itemsMatch(itemContainer.getSampleDirectly(), item)) {
+            if (StackUtils.itemsMatch(itemRequest, itemContainer.getSampleDirectly())) {
                 int take = Math.min(amount, containerAmount);
                 if (take <= 0) {
                     if (!contentLocked) {

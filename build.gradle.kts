@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "com.ytdd9527.networksexpansion"
-version = "2.1.109"
+version = "2.1.110"
 
 java {
     toolchain {
@@ -35,7 +35,7 @@ dependencies {
     compileOnly("com.github.SlimefunGuguProject:Slimefun4:2025.1")
 
     // Tools etc.
-    implementation("org.bstats:bstats-bukkit:3.0.2")
+    implementation("org.bstats:bstats-bukkit:3.2.1")
     implementation("com.jeff-media:MorePersistentDataTypes:2.4.0")
     implementation("dev.sefiraat:SefiLib:0.2.6")
     implementation("net.byteflux:libby-bukkit:1.3.2")
@@ -65,6 +65,8 @@ dependencies {
     compileOnly("com.github.balugaq:FluffyMachines:43d7444e4c")
     compileOnly("com.github.TimetownDev:GuguSlimefunLib:45627c6f8e")
     compileOnly("com.github.balugaq:JustEnoughGuide:7f21e113a2")
+    // System-scoped local JARs
+    compileOnly(fileTree(mapOf("dir" to "lib", "include" to listOf("*.jar"))))
 }
 
 tasks {
