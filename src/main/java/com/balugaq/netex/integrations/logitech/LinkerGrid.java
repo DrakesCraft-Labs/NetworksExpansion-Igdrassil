@@ -33,9 +33,6 @@ import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
 import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
 import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
-import lombok.extern.slf4j.Slf4j;
-import me.matl114.logitech.core.Cargo.Links.HyperLink;
-import me.matl114.logitech.core.Cargo.Links.StorageLink;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ClickAction;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
@@ -61,7 +58,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-@Slf4j
 @SuppressWarnings({"DuplicatedCode"})
 public class LinkerGrid extends NetworkObject {
     public static final DateFormat DATE_FORMAT = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.MEDIUM);
