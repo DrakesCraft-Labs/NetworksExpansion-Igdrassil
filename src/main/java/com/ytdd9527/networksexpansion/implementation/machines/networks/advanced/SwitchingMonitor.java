@@ -267,7 +267,7 @@ public class SwitchingMonitor extends NetworkObject implements HangingBlock, Pla
 
         template = uniconize(template);
 
-        long amount = root.getAllNetworkItemsLongType().getOrDefault(template, 0L);
+        long amount = root.getAllNetworkItemsLongTypeView().getOrDefault(template, 0L);
         entityBlock.setItem(iconize(template, amount), false);
     }
 

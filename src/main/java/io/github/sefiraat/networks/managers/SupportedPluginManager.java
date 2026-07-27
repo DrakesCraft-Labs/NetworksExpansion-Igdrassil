@@ -1,5 +1,6 @@
 package io.github.sefiraat.networks.managers;
 
+import com.balugaq.netex.integrations.logitech.LogitechIntegration;
 import com.bgsoftware.wildstacker.api.WildStackerAPI;
 import com.google.common.base.Preconditions;
 import dev.rosewood.rosestacker.api.RoseStackerAPI;
@@ -9,11 +10,13 @@ import lombok.Setter;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Item;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public class SupportedPluginManager {
 
     @Getter
     private static SupportedPluginManager instance;
+    private @Nullable @Getter LogitechIntegration logitechIntegration = null;
 
     private final @Getter boolean infinityExpansion;
     private final @Getter boolean fluffyMachines;
@@ -30,6 +33,7 @@ public class SupportedPluginManager {
     // region First Tick Only Registrations
     private @Getter boolean mcMMO;
     private @Getter boolean wildChests;
+    private @Getter boolean logitech;
 
     // endregion
 
@@ -97,6 +101,10 @@ public class SupportedPluginManager {
             } catch (ClassNotFoundException ignored) {
                 this.justEnoughGuide = false;
             }
+        }
+        this.logitech = Bukkit.getPluginManager().isPluginEnabled("LogiTech");
+        if (this.logitech) {
+            logitechIntegration = new LogitechIntegration();
         }
     }
 }

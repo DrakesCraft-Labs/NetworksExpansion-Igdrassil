@@ -76,6 +76,9 @@ messages:
     no_menu: "未找到菜单"
     unsupported_blueprint: "不支持的蓝图"
     broken_blueprint: "蓝图已损坏"
+    no_location_found: "未找到位置"
+    no_enough_items: "没有足够的物品"
+    cannot_access_code: "无法访问代码"
   blueprint:
     title: "<click_info>已指定配方"
     empty: "<passive>空"
@@ -303,6 +306,8 @@ messages:
         - "<click_info>左键点击: <passive>打开详情界面"
       item-flow-viewer-sub-click-behavior:
         - "<click_info>左键点击: <passive>高亮机器"
+      linker-grid-click-behavior:
+        - '<click_info>左键点击: <passive>获取存储的超链接/量子纠缠奇点'
     comprehensive:
       auto_set_face: "自动设置朝向"
   completed-operation:
@@ -384,6 +389,8 @@ messages:
       success: "&a合成成功"
     storage_card_converter:
       success: "&a转换成功"
+    viewer:
+      linked-stack: "&a纠缠链接的历史记录已经刷新!"
   unsupported-operation:
     incompatible-jeg-version: "<error>JustEnoughGuide 前置插件版本过低，请升级至最新构建版本"
     storage_card_converter:
@@ -471,6 +478,7 @@ messages:
       invalid_custom_max_amount: "<passive>[<gold>网络拓展<passive>] <error>网络高级量子存储必须为: 1 至 140737488355328"
       invalid_custom_max_amount_new: "<passive>[<gold>网络拓展<passive>] <error>网络高级量子存储必须为: 1 至 140737488355328"
       may_duping: "Player \"%s\" attempted to use quantum storage to dupe at %s. (see https://b23.tv/BV1ZMXuBpEAz)"
+      dangerous_operation: "<error>高危操作，禁止同时连接量子存储和网络单元!"
     configurator:
       not_a_copyable_block: "<error>该方块没有指定朝向"
       not_a_pasteable_block: "<error>你必须指向一个带方向选择的网络方块"
@@ -493,6 +501,12 @@ messages:
     crafter_manager:
       different_type_1: "&c已存入的蓝图与合成机类型不符"
       different_type_2: "&c已存入: %s; &a期望: %s"
+    viewer:
+      location-not-found: "&c无法找到该物品位置!"
+      link-stack-not-found: "&c没有足够的超链接/量子纠缠奇点!"
+      no-permission: "&c你没有权限访问对应的存储方块!"
+      cannot-access-code: "&c代码无法访问，设置失败!"
+      not-initialized: "&c无法初始化逻辑工艺反射，请联系开发者寻求帮助!"
   super-head:
     - "███╗   ██╗███████╗████████╗██╗    ██╗ ██████╗ ██████╗ ██╗  ██╗███████╗   "
     - "████╗  ██║██╔════╝╚══██╔══╝██║    ██║██╔═══██╗██╔══██╗██║ ██╔╝██╔════╝   "
@@ -1114,6 +1128,14 @@ icons:
       - "&a在上方的空位放置能被设置方向的网络机器（监视器，推送，抓取等）"
       - "&a点击方向按键对这些机器预设方向"
       - "&a使机器放置后，立即拥有方向属性"
+  linker-type-hyper-link:
+    name: "&6链接使用: &d超链接"
+    lore:
+      - "&a点击将链接使用改为&d量子纠缠奇点"
+  linker-type-quantum-link:
+    name: "&6链接使用: &d量子纠缠奇点"
+    lore:
+      - "&a点击将链接使用改为&d超链接"
   recipe-types:
     expansion_workbench_3x3:
       name: "网络拓展工作台"
@@ -3823,6 +3845,16 @@ items:
     lore:
       - "最快速地销毁一切输入的物品"
       - "在界面中点击玩家背包中的物品会销毁物品"
+  NTW_EXPANSION_LINKER_GRID:
+    name: "逻辑链接网格"
+    lore:
+      - "&e便捷获取超链接/量子纠缠奇点"
+      - "排序方式: "
+      - "&eAZ&7: &e按字母顺序排序"
+      - "&e数量&7: &e按物品数量排序"
+      - "&e数量倒序&7: &e按物品数量倒序排序"
+      - "&e附属&7: &e按物品所属附属字母顺序排序"
+      - "支持拼音搜索"
   NTW_EXPANSION_PLACEHOLDER_ITEM:
     name: "占位符"
     lore:
@@ -3867,7 +3899,7 @@ groups:
       main_menu_trophy: "<color_random_string>贡献"
       sub_menu_author: "<color_random_string>贡献 - 作者"
       sub_menu_announce: "<color_random_string>贡献 - 声明"
-      sub_menu_deprecated: "<color_random_string>已废弃的物品"
+      sub_menu_deprecated: "<color_random_string>已废弃的物品(不再使用)"
 theme:
   gold: ""
   white: ""

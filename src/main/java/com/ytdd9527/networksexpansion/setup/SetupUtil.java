@@ -5,6 +5,7 @@ import com.ytdd9527.networksexpansion.implementation.ExpansionItemsMenus;
 import io.github.sefiraat.networks.Networks;
 import io.github.sefiraat.networks.slimefun.NetworkSlimefunItems;
 import net.guizhanss.slimefun4.utils.WikiUtils;
+import org.bukkit.Bukkit;
 
 public class SetupUtil {
 
@@ -319,8 +320,10 @@ public class SetupUtil {
 
     public static void setupAll() {
         setupItem();
-        setupMenu();
         setupWiki();
         setupIntegration();
+
+        // wait for logitech integration
+        Bukkit.getScheduler().runTaskLaterAsynchronously(Networks.getInstance(), SetupUtil::setupMenu, 2L);
     }
 }

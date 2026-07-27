@@ -6,6 +6,7 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
 import static io.github.sefiraat.networks.slimefun.NetworkSlimefunItems.ADVANCED_NANOBOTS;
+import static io.github.sefiraat.networks.slimefun.NetworkSlimefunItems.NETWORK_PROBE;
 import static io.github.sefiraat.networks.slimefun.NetworkSlimefunItems.OPTIC_GLASS;
 import static io.github.sefiraat.networks.slimefun.NetworkSlimefunItems.CRAFTING_BLUEPRINT;
 import static io.github.sefiraat.networks.slimefun.NetworkSlimefunItems.INTERDIMENSIONAL_PRESENCE;
@@ -1756,5 +1757,11 @@ public class ExpansionRecipes {
         SlimefunItems.PORTABLE_DUSTBIN, SlimefunItems.PORTABLE_DUSTBIN, SlimefunItems.PORTABLE_DUSTBIN,
         SlimefunItems.PORTABLE_DUSTBIN, SlimefunItems.PORTABLE_DUSTBIN, SlimefunItems.PORTABLE_DUSTBIN,
         SlimefunItems.PORTABLE_DUSTBIN, SlimefunItems.PORTABLE_DUSTBIN, SlimefunItems.PORTABLE_DUSTBIN
+    };
+
+    public static final ItemStack[] AUTHOR_TINALNESS = new ItemStack[] {
+        SYNTHETIC_EMERALD_SHARD.getItem(), NETWORK_PROBE.getItem(), SYNTHETIC_EMERALD_SHARD.getItem(),
+        OPTIC_CABLE.getItem(), SIMPLE_NANOBOTS.getItem(), OPTIC_CABLE.getItem(),
+        SYNTHETIC_EMERALD_SHARD.getItem(), ExpansionItemStacks.STATUS_VIEWER, SYNTHETIC_EMERALD_SHARD.getItem()
     };
 }
