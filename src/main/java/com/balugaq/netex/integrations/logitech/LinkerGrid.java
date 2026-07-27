@@ -9,6 +9,7 @@ import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import com.ytdd9527.networksexpansion.core.items.machines.AbstractGridNewStyle;
 import com.ytdd9527.networksexpansion.implementation.ExpansionItems;
+import com.ytdd9527.networksexpansion.utils.ReflectionUtil;
 import com.ytdd9527.networksexpansion.utils.TextUtil;
 import io.github.sefiraat.networks.NetworkStorage;
 import io.github.sefiraat.networks.network.NetworkRoot;
@@ -85,6 +86,20 @@ public class LinkerGrid extends NetworkObject {
     private static final String BS_LINKER_TYPE = "LinkerType";
     private final @NotNull IntRangeSetting tickRate;
     private final ItemStack HyperLinkStack, QuantumLinkStack;
+    private static final Class<?> hyperLinkClass, storageLinkClass;
+    public static boolean initialized = false;
+    static {
+        hyperLinkClass = ReflectionUtil.getClass(
+            "me.matl114.logitech.core.Cargo.Links.HyperLink",
+            "me.matl114.logitech.SlimefunItem.Cargo.Links.HyperLink"
+        );
+        storageLinkClass = ReflectionUtil.getClass(
+            "me.matl114.logitech.core.Cargo.Links.StorageLink",
+            "me.matl114.logitech.SlimefunItem.Cargo.Links.StorageLink"
+        );
+
+        initialized = hyperLinkClass != null && storageLinkClass != null;
+    }
 
     public LinkerGrid(
         @NotNull ItemGroup itemGroup,
@@ -296,6 +311,10 @@ public class LinkerGrid extends NetworkObject {
                 displayStack.setItemMeta(itemMeta);
                 blockMenu.replaceExistingItem(getDisplaySlots()[i], displayStack);
                 blockMenu.addMenuClickHandler(getDisplaySlots()[i], (player, slot, item, action) -> {
+                    if (!initialized) {
+                        player.sendMessage(Lang.getString("messages.unsupported-operation.viewer.not-initialized"));
+                        return false;
+                    }
                     tryGetLink(blockMenu, player, stack);
                     return false;
                 });
@@ -346,33 +365,15 @@ public class LinkerGrid extends NetworkObject {
         }
 
         var meta = link.getItemMeta();
-        try {
-            if ((tp == LinkerType.HyperLink && !HyperLink.canLink(meta))
-                || (tp == LinkerType.QuantumLink && !StorageLink.canLink(meta))) {
-                sendFeedback(blockMenu.getLocation(), FeedbackType.NOT_ENOUGH_ITEMS);
-                player.sendMessage(Lang.getString("messages.unsupported-operation.viewer.link-stack-not-found"));
-                return;
-            }
-
-            if (tp == LinkerType.HyperLink) HyperLink.setLink(meta, location);
-            else StorageLink.setLink(meta, location);
-        } catch (Throwable ignored) {
-            try {
-                if ((tp == LinkerType.HyperLink && !me.matl114.logitech.SlimefunItem.Cargo.Links.HyperLink.canLink(meta))
-                    || (tp == LinkerType.QuantumLink && !me.matl114.logitech.SlimefunItem.Cargo.Links.StorageLink.canLink(meta))) {
-                    sendFeedback(blockMenu.getLocation(), FeedbackType.NOT_ENOUGH_ITEMS);
-                    player.sendMessage(Lang.getString("messages.unsupported-operation.viewer.link-stack-not-found"));
-                    return;
-                }
-
-                if (tp == LinkerType.HyperLink) me.matl114.logitech.SlimefunItem.Cargo.Links.HyperLink.setLink(meta, location);
-                else me.matl114.logitech.SlimefunItem.Cargo.Links.StorageLink.setLink(meta, location);
-            } catch (Throwable ignored2) {
-                sendFeedback(blockMenu.getLocation(), FeedbackType.CANNOT_ACCESS_CODE);
-                player.sendMessage(Lang.getString("messages.unsupported-operation.viewer.cannot-access-code"));
-                return;
-            }
+        if ((tp == LinkerType.HyperLink && !canLink$HyperLink(meta))
+            || (tp == LinkerType.QuantumLink && !canLink$QuantumLink(meta))) {
+            sendFeedback(blockMenu.getLocation(), FeedbackType.NOT_ENOUGH_ITEMS);
+            player.sendMessage(Lang.getString("messages.unsupported-operation.viewer.link-stack-not-found"));
+            return;
         }
+
+        if (tp == LinkerType.HyperLink) setLink$HyperLink(meta, location);
+        else setLink$QuantumLink(meta, location);
         link.setItemMeta(meta);
         InventoryUtil.give(player, link);
 
@@ -665,5 +666,21 @@ public class LinkerGrid extends NetworkObject {
 
     private void setLinkerType(Location location, LinkerType linkerType) {
         StorageCacheUtils.setData(location, BS_LINKER_TYPE, linkerType.name());
+    }
+
+    public static boolean canLink$HyperLink(ItemMeta meta) {
+        return (boolean) ReflectionUtil.invokeStaticMethod(hyperLinkClass, "canLink", meta);
+    }
+
+    public static boolean canLink$QuantumLink(ItemMeta meta) {
+        return (boolean) ReflectionUtil.invokeStaticMethod(storageLinkClass, "canLink", meta);
+    }
+
+    public static void setLink$HyperLink(ItemMeta meta, Location location) {
+        ReflectionUtil.invokeStaticMethod(hyperLinkClass, "setLink", meta, location);
+    }
+
+    public static void setLink$QuantumLink(ItemMeta meta, Location location) {
+        ReflectionUtil.invokeStaticMethod(storageLinkClass, "setLink", meta, location);
     }
 }
