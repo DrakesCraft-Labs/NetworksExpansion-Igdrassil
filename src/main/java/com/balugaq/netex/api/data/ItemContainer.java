@@ -2,7 +2,6 @@ package com.balugaq.netex.api.data;
 
 import io.github.sefiraat.networks.network.stackcaches.ItemStackCache;
 import io.github.sefiraat.networks.utils.StackUtils;
-import io.github.thebusybiscuit.slimefun4.utils.itemstack.ItemStackWrapper;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -14,26 +13,23 @@ import org.jetbrains.annotations.NotNull;
 public class ItemContainer extends ItemStackCache {
 
     private final int id;
-    private final @NotNull ItemStack sample;
 
     @Setter
     @Getter
     private int amount;
 
     public ItemContainer(int id, @NotNull ItemStack item, int amount) {
-        super(item);
+        super(StackUtils.getAsQuantity(item, 1));
         this.id = id;
-        this.sample = item.clone();
-        sample.setAmount(1);
         this.amount = amount;
     }
 
     public @NotNull ItemStack getSample() {
-        return sample.clone();
+        return itemStack.clone();
     }
 
     public @NotNull ItemStack getSampleDirectly() {
-        return sample;
+        return itemStack;
     }
 
     public boolean isSimilar(ItemStack other) {
