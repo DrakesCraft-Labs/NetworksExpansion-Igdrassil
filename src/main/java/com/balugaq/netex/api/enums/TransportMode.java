@@ -16,11 +16,6 @@ public enum TransportMode {
     SPECIFIED_QUANTITY,
     P2P;
 
-    @Deprecated
-    public @NotNull String getName() {
-        return TextUtil.colorRandomString(getRawName());
-    }
-
     public @NotNull String getRawName() {
         return switch (this) {
             case NONE -> Lang.getString("icons.transport_mode.none");

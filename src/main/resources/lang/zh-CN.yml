@@ -151,7 +151,6 @@ messages:
       - "&6/networks reducestorageitem <amount> - 使看向的网络抽屉中减少物品."
       - "&6/networks setquantum <amount> - 设置看向的量子存储物品的存储量."
       - "&6/networks setcontainerid <containerId> - 设置网络抽屉的容器ID."
-      - "&6/networks worldedit <subCommand> - 粘液创世神功能."
       - "&6/networks updateitem - 更新手持物品."
       - "&6/networks getstorageitem <slot> - 获取看向的网络抽屉指定槽位的物品."
       - "&6/networks viewlog - 将指向的 AdminDebuggable 的日志输出."
@@ -180,19 +179,6 @@ messages:
       getstorageitem:
         - "&6/networks getStorageItem <slot> - 获取指向的货运存储指定槽位的物品."
         - "&6ex: /networks getStorageItem 0"
-      worldedit:
-        - "&6/networks worldedit <subCommand> - 粘液创世神功能."
-        - "&6/networks worldedit pos1 - 选择第一个位置"
-        - "&6/networks worldedit pos2 - 选择第二个位置"
-        - "&6/networks worldedit paste <sfid> <handler> <force> - 粘贴粘液方块"
-        - "&6/networks worldedit clear <callHandler> <skipVanilla> - 清除粘液方块"
-        - "&6/networks worldedit blockMenu setSlot <slot> - 修改选中区域的粘液方法的菜单的对应槽位为手上物品"
-        - "&6/networks worldedit blockInfo add <key> <value> - 增加粘液方块信息"
-        - "&6/networks worldedit blockInfo remove <value> - 移除粘液方块信息"
-        - "&6/networks worldedit blockInfo set <key> <value> - 设置粘液方块信息"
-        - "&6/networks worldedit clone - 复制选中区域至你的位置"
-        - "&6/networks worldedit clearPos - 清除选择的位置"
-        - "&6/networks worldedit showAreaOutline - 显示选中区域的轮廓"
       updateitem:
         - "&6/networks updateItem - 更新手持物品."
         - "&6ex: /networks updateItem"
@@ -201,26 +187,6 @@ messages:
         - "&6ex: /networks viewLog"
       unknown-command:
         - "<error>未知命令! 请使用 /networks help 查看帮助信息."
-    worldedit:
-      must-select-range: "&c请先选中一个区域!"
-      must-select-same-world: "&c请选择同一世界的两个位置!"
-      clearing-area: "&aClearing blocks from %s to %s"
-      clear-done: "&aClear %s blocks done in %s ms"
-      set-slot: "&aSetting slot %s to %s"
-      set-slot-done: "&aSet slot %s to %s done in %s ms"
-      pasting-block: "&aPasting blocks from %s to %s"
-      paste-done: "&aPaste %s blocks done in %s ms"
-      setting-info: "&aSetting %s to %s"
-      set-info-done: "&aSet %s to %s done in %s ms"
-      removing-info: "&aRemoving %s"
-      remove-info-done: "&aRemove %s done in %s ms"
-      invalid-slimefun-block-id: "&c这不是一个有效的粘液方块ID!"
-      not-a-placeable-block: "&c不可放置的粘液方块!"
-      set-pos1: "&aSet pos1 to %s"
-      set-pos2: "&aSet pos2 to %s"
-      set-pos1-with-blocks: "&aSet pos1 to %s (%s Blocks)"
-      set-pos2-with-blocks: "&aSet pos2 to %s (%s Blocks)"
-      invalid-slot: "&c槽位号必须在0-53之间!"
   normal-operation:
     common:
       page: "页"
@@ -1297,15 +1263,6 @@ items:
     name: "网络拓展工作台"
     lore:
       - "可以合成网络拓展的各种材料和机器"
-
-  NTW_EXPANSION_WORLD_EDIT_AXE:
-    name: "网络粘液创世神"
-    lore:
-      - "仅管理员可用"
-      - "左键选择第一个位置"
-      - "右键选择第二个位置"
-      - "&c此物品已弃用"
-      - "&c请使用 SFWorldEdit 粘液创世神的物品"
 
   NTW_EXPANSION_INFO_TOOL:
     name: "网络信息工具"

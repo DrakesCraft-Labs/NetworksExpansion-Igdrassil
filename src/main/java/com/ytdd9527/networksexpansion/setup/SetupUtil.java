@@ -167,7 +167,6 @@ public class SetupUtil {
             ExpansionItems.NETWORK_BRIDGE_PINK.registerThis());
 
         ExpansionItemsMenus.SUB_MENU_DEPRECATED.addTo(
-            ExpansionItems.WORLDEDIT_AXE.registerThis(),
             ExpansionItems.MAGIC_WORKBENCH_BLUEPRINT.registerThis(),
             ExpansionItems.ARMOR_FORGE_BLUEPRINT.registerThis(),
             ExpansionItems.SMELTERY_BLUEPRINT.registerThis(),
@@ -233,7 +232,8 @@ public class SetupUtil {
             ExpansionItems.ADVANCED_AUTO_GRIND_STONE_WITHHOLDING.registerThis(),
             ExpansionItems.ADVANCED_AUTO_JUICER_WITHHOLDING.registerThis(),
             ExpansionItems.ADVANCED_AUTO_ORE_CRUSHER_WITHHOLDING.registerThis(),
-            ExpansionItems.ADVANCED_AUTO_PRESSURE_CHAMBER_WITHHOLDING.registerThis());
+            ExpansionItems.ADVANCED_AUTO_PRESSURE_CHAMBER_WITHHOLDING.registerThis(),
+            ExpansionItems.BETTER_GRABBER.registerThis());
 
         /* authors */
         ExpansionItemsMenus.SUB_MENU_AUTHOR.addTo(
@@ -254,9 +254,6 @@ public class SetupUtil {
             ExpansionItems.NTW_EXPANSION_ANNOUNCE_8.registerThis(),
             ExpansionItems.NTW_EXPANSION_ANNOUNCE_9.registerThis(),
             ExpansionItems.NTW_EXPANSION_ANNOUNCE_10.registerThis());
-
-        /* Deprecated */
-        ExpansionItems.BETTER_GRABBER.registerThis(); // Not add to menu because it's deprecated, shit compatibility
     }
 
     private static void setupMenu() {
