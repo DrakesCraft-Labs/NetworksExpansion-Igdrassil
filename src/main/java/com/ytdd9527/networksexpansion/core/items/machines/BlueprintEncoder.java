@@ -39,7 +39,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public abstract class AbstractEncoder extends NetworkObject implements CraftTyped, RecipeCompletableWithGuide {
+public class BlueprintEncoder extends NetworkObject implements CraftTyped, RecipeCompletableWithGuide {
     private static final int[] BACKGROUND = new int[]{
         0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 15, 17, 18, 20, 24, 25, 27, 28, 29, 33, 36, 37, 38, 39, 40, 41,
         42, 43, 44
@@ -55,7 +55,7 @@ public abstract class AbstractEncoder extends NetworkObject implements CraftType
     private static final int JEG_SLOT = 4;
     private static final int CHARGE_COST = 2000;
 
-    public AbstractEncoder(
+    public BlueprintEncoder(
         @NotNull ItemGroup itemGroup,
         @NotNull SlimefunItemStack item,
         @NotNull RecipeType recipeType,
