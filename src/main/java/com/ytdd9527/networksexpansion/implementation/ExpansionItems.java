@@ -66,7 +66,6 @@ import com.ytdd9527.networksexpansion.implementation.machines.viewer.ItemFlowVie
 import com.ytdd9527.networksexpansion.implementation.tools.CargoNodeQuickTool;
 import com.ytdd9527.networksexpansion.implementation.tools.DueMachineConfigurator;
 import com.ytdd9527.networksexpansion.implementation.tools.ItemMover;
-import com.ytdd9527.networksexpansion.implementation.tools.NetworksExpansionWorldEditAxe;
 import com.ytdd9527.networksexpansion.implementation.tools.NetworksInfoTool;
 import com.ytdd9527.networksexpansion.implementation.tools.StatusViewer;
 import io.github.sefiraat.networks.slimefun.network.NetworkBridge;
@@ -875,10 +874,6 @@ public class ExpansionItems {
         RecipeType.ENHANCED_CRAFTING_TABLE,
         ExpansionRecipes.CARGO_NODE_QUICK_TOOL);
 
-    @SuppressWarnings("deprecation")
-    public static final NetworksExpansionWorldEditAxe WORLDEDIT_AXE =
-        new NetworksExpansionWorldEditAxe(ExpansionItemsMenus.MENU_ITEMS, ExpansionItemStacks.WORLDEDIT_AXE);
-
     public static final NetworksInfoTool INFO_TOOL =
         new NetworksInfoTool(ExpansionItemsMenus.MENU_ITEMS, ExpansionItemStacks.INFO_TOOL);
 
@@ -1283,8 +1278,8 @@ public class ExpansionItems {
     public static final WhitelistedTransferGrabber BETTER_GRABBER = new WhitelistedTransferGrabber(
         ExpansionItemsMenus.MENU_FUNCTIONAL_MACHINE,
         ExpansionItemStacks.BETTER_GRABBER,
-        ExpansionWorkbench.TYPE,
-        ExpansionRecipes.BETTER_GRABBER);
+        RecipeType.NULL,
+        ExpansionRecipes.NULL);
 
     public static final UnusableSlimefunItem NTW_EXPANSION_ANNOUNCE_1 = new UnusableSlimefunItem(
         ExpansionItemsMenus.MENU_TROPHY,

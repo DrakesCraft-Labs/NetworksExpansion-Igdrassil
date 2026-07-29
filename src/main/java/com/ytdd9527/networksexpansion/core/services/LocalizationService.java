@@ -411,11 +411,4 @@ public class LocalizationService {
     public ItemStack getMechanism(String key) {
         return getIcon("mechanism." + key, Material.BOOK);
     }
-
-    @Deprecated
-    @NotNull
-    @ParametersAreNonnullByDefault
-    public String getMCMessage(String key) {
-        return getString("mc_messages." + key);
-    }
 }

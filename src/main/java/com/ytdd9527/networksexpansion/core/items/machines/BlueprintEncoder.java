@@ -51,8 +51,6 @@ public class BlueprintEncoder extends NetworkObject implements CraftTyped, Recip
     private static final int OUTPUT_SLOT = 34;
     private static final int ITEM_TARGET_DESC_SLOT = 26;
     private static final int ITEM_TARGET_SLOT = 35;
-    @Deprecated
-    private static final int JEG_SLOT = 4;
     private static final int CHARGE_COST = 2000;
 
     public BlueprintEncoder(
