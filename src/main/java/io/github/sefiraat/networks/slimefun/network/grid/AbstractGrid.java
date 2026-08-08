@@ -109,8 +109,10 @@ public abstract class AbstractGrid extends NetworkObject {
                     addToRegistry(block);
                     tryAddItem(blockMenu);
                     GridCache cache = getCacheMap().get(block.getLocation());
-                    cache.setEntriesCache(null);
-                    updateDisplay(blockMenu);
+                    if (cache != null) {
+                        cache.setEntriesCache(null);
+                        updateDisplay(blockMenu);
+                    }
                 }
             }
 

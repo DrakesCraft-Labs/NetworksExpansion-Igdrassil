@@ -289,8 +289,9 @@ public class BlueprintEncoder extends NetworkObject implements CraftTyped, Recip
     public boolean testRecipe(CraftType craftType, ItemStack[] inputs, ItemStack[] recipe) {
         return craftType.testRecipe(inputs, recipe);
     }
+
     public boolean canTestVanillaRecipe(ItemStack[] inputs) {
-        return false;
+        return true;
     }
 
     @Override
