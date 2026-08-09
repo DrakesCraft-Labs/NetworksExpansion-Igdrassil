@@ -201,7 +201,7 @@ public class StorageUnitData {
      * @return the amount actual added
      */
     @Deprecated
-    public int addStoredItem(@NotNull ItemStack item, int amount, boolean contentLocked, boolean force) {
+    public synchronized int addStoredItem(@NotNull ItemStack item, int amount, boolean contentLocked, boolean force) {
         int add = 0;
         boolean isVoidExcess = NetworksDrawer.isVoidExcess(getLastLocation());
         for (ItemContainer each : storedItems.values()) {
@@ -236,14 +236,12 @@ public class StorageUnitData {
             if (contentLocked || NetworksDrawer.isLocked(getLastLocation())) return 0;
         }
         // Not found, new one
-        synchronized (storedItems) {
-            if (storedItems.size() < sizeType.getMaxItemCount()) {
-                add = Math.min(amount, sizeType.getEachMaxSize());
-                int itemId = DataStorage.getItemId(item);
-                storedItems.put(itemId, new ItemContainer(itemId, item, add));
-                DataStorage.addStoredItem(id, itemId, add);
-                return add;
-            }
+        if (storedItems.size() < sizeType.getMaxItemCount()) {
+            add = Math.min(amount, sizeType.getEachMaxSize());
+            int itemId = DataStorage.getItemId(item);
+            storedItems.put(itemId, new ItemContainer(itemId, item, add));
+            DataStorage.addStoredItem(id, itemId, add);
+            return add;
         }
         return add;
     }
@@ -275,7 +273,7 @@ public class StorageUnitData {
         }
     }
 
-    public void setItemAmount(int itemId, int amount) {
+    public synchronized void setItemAmount(int itemId, int amount) {
         if (amount < 0) {
             // Directly remove
             removeItem(itemId);
@@ -288,7 +286,7 @@ public class StorageUnitData {
         }
     }
 
-    public void removeAmount(int itemId, int amount) {
+    public synchronized void removeAmount(int itemId, int amount) {
         ItemContainer container = storedItems.get(itemId);
         if (container != null) {
             container.removeAmount(amount);
@@ -343,7 +341,7 @@ public class StorageUnitData {
 
     @Deprecated
     @Nullable
-    public ItemStack requestItem(@NotNull ItemRequest itemRequest) {
+    public synchronized ItemStack requestItem(@NotNull ItemRequest itemRequest) {
         ItemStack item = itemRequest.getItemStack();
         if (item == null) {
             return null;
@@ -368,7 +366,7 @@ public class StorageUnitData {
     }
 
     @Deprecated
-    public void depositItemStacks(@NotNull Map<ItemStack, Long> itemsToDeposit, boolean contentLocked) {
+    public synchronized void depositItemStacks(@NotNull Map<ItemStack, Long> itemsToDeposit, boolean contentLocked) {
         for (Map.Entry<ItemStack, Long> entry : itemsToDeposit.entrySet()) {
             if (entry.getValue() > Integer.MAX_VALUE) {
                 // rollback to MAX_VALUE
@@ -387,7 +385,7 @@ public class StorageUnitData {
     }
 
     @Deprecated
-    public void depositItemStack(@NotNull Map.Entry<ItemStack, Integer> entry, boolean contentLocked) {
+    public synchronized void depositItemStack(@NotNull Map.Entry<ItemStack, Integer> entry, boolean contentLocked) {
         ItemStack item = StackUtils.getAsQuantity(entry.getKey(), entry.getValue());
         depositItemStack(item, contentLocked);
         int leftover = item.getAmount();
@@ -395,21 +393,21 @@ public class StorageUnitData {
     }
 
     @Deprecated
-    public void depositItemStack(@NotNull Map<ItemStack, Integer> itemsToDeposit, boolean contentLocked) {
+    public synchronized void depositItemStack(@NotNull Map<ItemStack, Integer> itemsToDeposit, boolean contentLocked) {
         for (Map.Entry<ItemStack, Integer> entry : itemsToDeposit.entrySet()) {
             depositItemStack(entry, contentLocked);
         }
     }
 
     @Deprecated
-    public void depositItemStack(@NotNull ItemStack @NotNull [] itemsToDeposit, boolean contentLocked) {
+    public synchronized void depositItemStack(@NotNull ItemStack @NotNull [] itemsToDeposit, boolean contentLocked) {
         for (ItemStack item : itemsToDeposit) {
             depositItemStack(item, contentLocked);
         }
     }
 
     @Deprecated
-    public void depositItemStack(@Nullable ItemStack itemsToDeposit, boolean contentLocked, boolean force) {
+    public synchronized void depositItemStack(@Nullable ItemStack itemsToDeposit, boolean contentLocked, boolean force) {
         if (itemsToDeposit == null || isBlacklisted(itemsToDeposit)) {
             return;
         }
@@ -420,17 +418,17 @@ public class StorageUnitData {
     }
 
     @Deprecated
-    public void depositItemStack(ItemStack item, boolean contentLocked) {
+    public synchronized void depositItemStack(ItemStack item, boolean contentLocked) {
         depositItemStack(item, contentLocked, false);
     }
 
     @Nullable
-    public ItemStack requestItem0(@NotNull Location accessor, @NotNull ItemRequest itemRequest) {
+    public synchronized ItemStack requestItem0(@NotNull Location accessor, @NotNull ItemRequest itemRequest) {
         return requestItem0(accessor, itemRequest, true);
     }
 
     @Nullable
-    public ItemStack requestItem0(@NotNull Location accessor, @NotNull ItemRequest itemRequest, boolean contentLocked) {
+    public synchronized ItemStack requestItem0(@NotNull Location accessor, @NotNull ItemRequest itemRequest, boolean contentLocked) {
         ItemStack item = itemRequest.getItemStack();
         if (item == null) {
             return null;
@@ -519,7 +517,7 @@ public class StorageUnitData {
         return null;
     }
 
-    public void depositItemStacks0(
+    public synchronized void depositItemStacks0(
         @NotNull Location accessor, @NotNull Map<ItemStack, Long> itemsToDeposit, boolean contentLocked) {
         for (Map.Entry<ItemStack, Long> entry : itemsToDeposit.entrySet()) {
             if (entry.getValue() > Integer.MAX_VALUE) {
@@ -538,7 +536,7 @@ public class StorageUnitData {
         }
     }
 
-    public void depositItemStack0(
+    public synchronized void depositItemStack0(
         @NotNull Location accessor, @NotNull Map.Entry<ItemStack, Integer> entry, boolean contentLocked) {
         ItemStack item = StackUtils.getAsQuantity(entry.getKey(), entry.getValue());
         depositItemStack0(accessor, item, contentLocked);
@@ -546,7 +544,7 @@ public class StorageUnitData {
         entry.setValue(leftover);
     }
 
-    public void depositItemStack0(
+    public synchronized void depositItemStack0(
         @NotNull Location accessor, @NotNull Map<ItemStack, Integer> itemsToDeposit, boolean contentLocked) {
         for (Map.Entry<ItemStack, Integer> entry : itemsToDeposit.entrySet()) {
             depositItemStack0(accessor, entry, contentLocked);
@@ -560,7 +558,7 @@ public class StorageUnitData {
         }
     }
 
-    public void depositItemStack0(
+    public synchronized void depositItemStack0(
         @NotNull Location accessor, @Nullable ItemStack itemsToDeposit, boolean contentLocked, boolean force) {
         if (itemsToDeposit == null || isBlacklisted(itemsToDeposit)) {
             return;
@@ -583,7 +581,7 @@ public class StorageUnitData {
      * @param amount:   amount will be added
      * @return the amount actual added
      */
-    public int addStoredItem0(
+    public synchronized int addStoredItem0(
         Location accessor, @NotNull ItemStack item, int amount, boolean contentLocked, boolean force) {
         int add = 0;
         boolean isVoidExcess = NetworksDrawer.isVoidExcess(getLastLocation());
@@ -678,14 +676,12 @@ public class StorageUnitData {
             if (contentLocked || NetworksDrawer.isLocked(getLastLocation())) return 0;
         }
         // Not found, new one
-        synchronized (storedItems) {
-            if (storedItems.size() < sizeType.getMaxItemCount()) {
-                add = Math.min(amount, sizeType.getEachMaxSize());
-                int itemId = DataStorage.getItemId(item);
-                storedItems.put(itemId, new ItemContainer(itemId, item, add));
-                DataStorage.addStoredItem(id, itemId, add);
-                return add;
-            }
+        if (storedItems.size() < sizeType.getMaxItemCount()) {
+            add = Math.min(amount, sizeType.getEachMaxSize());
+            int itemId = DataStorage.getItemId(item);
+            storedItems.put(itemId, new ItemContainer(itemId, item, add));
+            DataStorage.addStoredItem(id, itemId, add);
+            return add;
         }
         return add;
     }
