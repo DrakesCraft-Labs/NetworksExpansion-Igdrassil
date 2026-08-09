@@ -181,7 +181,7 @@ public class NetworkQuantumStorage extends SpecialSlimefunItem implements Distin
 
     @ParametersAreNonnullByDefault
     @Nullable
-    public static ItemStack getItemStack(@NotNull QuantumCache cache, @NotNull BlockMenu blockMenu, int amount) {
+    public static synchronized ItemStack getItemStack(@NotNull QuantumCache cache, @NotNull BlockMenu blockMenu, int amount) {
         if (cache.getAmountLong() < amount) {
             // Storage has no content or not enough, mix and match!
             ItemStack output = blockMenu.getItemInSlot(OUTPUT_SLOT);
@@ -509,7 +509,7 @@ public class NetworkQuantumStorage extends SpecialSlimefunItem implements Distin
         };
     }
 
-    public void insertAll(@NotNull Player p, @NotNull BlockMenu menu, @NotNull Block b) {
+    public synchronized void insertAll(@NotNull Player p, @NotNull BlockMenu menu, @NotNull Block b) {
         PlayerInventory inv = p.getInventory();
         QuantumCache cache = CACHES.get(menu.getLocation());
         if (cache == null) return;
@@ -517,9 +517,9 @@ public class NetworkQuantumStorage extends SpecialSlimefunItem implements Distin
         ItemStack storedItem = cache.getItemStack();
         if (storedItem == null) return;
 
-        if (dupeDetect(b, p)) {
-            return;
-        }
+//        if (dupeDetect(b, p)) {
+//            return;
+//        }
 
         long capacity = cache.getLimitLong();
 
@@ -549,7 +549,7 @@ public class NetworkQuantumStorage extends SpecialSlimefunItem implements Distin
         updateDisplayItem(menu, cache);
     }
 
-    public void extract(@NotNull Player p, @NotNull BlockMenu menu, @NotNull Block b, @NotNull ClickAction action) {
+    public synchronized void extract(@NotNull Player p, @NotNull BlockMenu menu, @NotNull Block b, @NotNull ClickAction action) {
         QuantumCache cache = CACHES.get(menu.getLocation());
         if (cache == null) return;
 
@@ -558,9 +558,9 @@ public class NetworkQuantumStorage extends SpecialSlimefunItem implements Distin
             return;
         }
 
-        if (dupeDetect(b, p)) {
-            return;
-        }
+//        if (dupeDetect(b, p)) {
+//            return;
+//        }
 
         long stored = cache.getAmountLong();
         if (action.isShiftClicked() && action.isRightClicked()) {

@@ -14,9 +14,12 @@ public class ItemContainer extends ItemStackCache {
 
     private final int id;
 
-    @Setter
     @Getter
-    private int amount;
+    private volatile int amount;
+
+    public synchronized void setAmount(int amount) {
+        this.amount = amount;
+    }
 
     public ItemContainer(int id, @NotNull ItemStack item, int amount) {
         super(StackUtils.getAsQuantity(item, 1));
@@ -36,7 +39,7 @@ public class ItemContainer extends ItemStackCache {
         return StackUtils.itemsMatch(this, other);
     }
 
-    public void addAmount(int amount) {
+    public synchronized void addAmount(int amount) {
         this.amount += amount;
     }
 
@@ -46,7 +49,7 @@ public class ItemContainer extends ItemStackCache {
      * @param amount: amount will be removed
      * @return amount that actual removed
      */
-    public int removeAmount(int amount) {
+    public synchronized int removeAmount(int amount) {
         if (this.amount > amount) {
             this.amount -= amount;
             return amount;
