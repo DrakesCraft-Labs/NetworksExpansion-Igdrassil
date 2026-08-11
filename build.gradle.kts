@@ -30,6 +30,11 @@ repositories {
 }
 
 dependencies {
+    // Pruebas nuestras. El proyecto no traia ninguna, asi que no habia forma de que un
+    // arreglo quedara vigilado: cualquiera podia deshacerlo sin que nada se quejara.
+    testImplementation("org.junit.jupiter:junit-jupiter:5.11.4")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+
     // Core
     compileOnly("io.papermc.paper:paper-api:1.21.4-R0.1-SNAPSHOT")
     compileOnly("com.github.SlimefunGuguProject:Slimefun4:2025.1")
@@ -106,3 +111,7 @@ tasks {
 
 // Set default tasks
 defaultTasks("clean", "build")
+
+tasks.test {
+    useJUnitPlatform()
+}

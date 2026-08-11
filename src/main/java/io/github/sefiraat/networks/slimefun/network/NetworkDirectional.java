@@ -29,6 +29,8 @@ import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
 import net.guizhanss.guizhanlib.minecraft.helper.MaterialHelper;
 import org.bukkit.Color;
+import io.github.thebusybiscuit.slimefun4.core.handlers.BlockBreakHandler;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -94,6 +96,17 @@ public abstract class NetworkDirectional extends NetworkObject {
         super(itemGroup, item, recipeType, recipe, outputAmount, type);
         this.tickRate = new IntRangeSetting(this, "tick_rate", 1, 1, 10);
         addItemSetting(this.tickRate);
+
+        addItemHandler(new BlockBreakHandler(true, true) {
+            @Override
+            public void onPlayerBreak(
+                    @NotNull BlockBreakEvent event,
+                    @NotNull ItemStack item,
+                    @NotNull List<ItemStack> drops) {
+                // Sin esto la direccion elegida sobrevive al bloque que la eligio.
+                forgetSelectedFace(event.getBlock().getLocation());
+            }
+        });
 
         addItemHandler(new BlockTicker() {
 
@@ -484,4 +497,28 @@ public abstract class NetworkDirectional extends NetworkObject {
                 pushVector.getZ(),
                 getDustOptions());
     }
+
+    /**
+     * Olvida la direccion cacheada de una ubicacion.
+     *
+     * SELECTED_DIRECTION_MAP es estatico y tenia tres put y ningun remove: crecia con cada nodo
+     * direccional colocado en la historia del servidor y solo se vaciaba al reiniciar.
+     *
+     * Lo grave no es la fuga sino el efecto de juego: getSelectedFace consulta este mapa **antes**
+     * que al BlockStorage, asi que una entrada vieja se impone sobre la direccion real de un
+     * bloque nuevo. Colocar un nodo donde antes hubo otro lo hacia apuntar a donde el jugador no
+     * eligio, sin ningun aviso.
+     *
+     * Va en la clase base a proposito: AdvancedDirectional hereda de aqui, asi que las maquinas
+     * de NetworksExpansion quedan cubiertas sin tocarlas una a una.
+     */
+    public static void forgetSelectedFace(@NotNull Location location) {
+        SELECTED_DIRECTION_MAP.remove(location);
+    }
+
+    /** Solo para pruebas: tamano actual del cache de direcciones. */
+    public static int selectedFaceCacheSize() {
+        return SELECTED_DIRECTION_MAP.size();
+    }
+
 }
