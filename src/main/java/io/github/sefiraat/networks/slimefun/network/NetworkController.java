@@ -151,4 +151,23 @@ public class NetworkController extends NetworkObject {
             CRAYONS.add(block.getLocation());
         }
     }
+
+    /**
+     * Vacia el estado estatico del controlador.
+     *
+     * NETWORKS, CRAYONS, records y recordFlow son estaticos y sobreviven a una
+     * recarga del plugin: al volver quedan llenos de Location de un mundo que ya no esta cargado,
+     * apuntando a NetworkRoot muertos. La red parece existir y no responde, y solo se arregla
+     * reiniciando el servidor entero.
+     *
+     * Es la misma familia de fallo que la fuga de SELECTED_DIRECTION_MAP: estado estatico que
+     * nadie limpia porque "total, el servidor se reinicia".
+     */
+    public static void clearRuntimeState() {
+        NETWORKS.clear();
+        CRAYONS.clear();
+        records.clear();
+        recordFlow.clear();
+    }
+
 }

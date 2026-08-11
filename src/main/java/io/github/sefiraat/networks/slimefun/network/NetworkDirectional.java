@@ -516,6 +516,11 @@ public abstract class NetworkDirectional extends NetworkObject {
         SELECTED_DIRECTION_MAP.remove(location);
     }
 
+    /** Vacia el cache entero. Se llama al apagar; forgetSelectedFace es para un bloque suelto. */
+    public static void clearSelectedFaces() {
+        SELECTED_DIRECTION_MAP.clear();
+    }
+
     /** Solo para pruebas: tamano actual del cache de direcciones. */
     public static int selectedFaceCacheSize() {
         return SELECTED_DIRECTION_MAP.size();

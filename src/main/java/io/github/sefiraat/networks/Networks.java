@@ -240,6 +240,11 @@ public class Networks extends JavaPlugin implements SlimefunAddon {
         if (autoSaveThread != null) {
             autoSaveThread.cancel();
         }
+
+        // El estado estatico no se vacia solo. Sin esto, una recarga del plugin deja los mapas
+        // llenos de ubicaciones muertas y las redes dejan de responder hasta reiniciar entero.
+        io.github.sefiraat.networks.slimefun.network.NetworkController.clearRuntimeState();
+        io.github.sefiraat.networks.slimefun.network.NetworkDirectional.clearSelectedFaces();
         DataStorage.saveAmountChange();
         if (queryQueue != null) {
             while (!queryQueue.isAllDone()) {
