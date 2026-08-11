@@ -31,7 +31,6 @@ import lombok.Getter;
 import net.byteflux.libby.BukkitLibraryManager;
 import net.byteflux.libby.Library;
 import net.byteflux.libby.LibraryManager;
-import net.guizhanss.guizhanlibplugin.updater.GuizhanUpdater;
 import org.bstats.bukkit.Metrics;
 import org.bstats.charts.AdvancedPie;
 import org.bukkit.Bukkit;
@@ -264,11 +263,17 @@ public class Networks extends JavaPlugin implements SlimefunAddon {
         getLogger().info(getLocalizationService().getString("messages.shutdown.disabled-successfully"));
     }
 
-    @SuppressWarnings("deprecation")
+    /**
+     * Desactivado a proposito en este fork.
+     *
+     * GuizhanUpdater descargaba la ultima compilacion de SU repositorio y sustituia el jar. En un
+     * fork eso es destructivo: se llevaria por delante todos nuestros arreglos sin avisar, y la
+     * proxima vez que alguien mirara por que "volvio el bug de los cofres" no habria ni rastro.
+     *
+     * Nuestras actualizaciones salen de nuestra propia canalizacion, no de la suya.
+     */
     public void tryUpdate() {
-        if (configManager.isAutoUpdate() && getDescription().getVersion().startsWith("Build")) {
-            GuizhanUpdater.start(this, getFile(), username, repo, branch);
-        }
+        // Sin operacion.
     }
 
     public void superHead() {
@@ -279,14 +284,14 @@ public class Networks extends JavaPlugin implements SlimefunAddon {
     }
 
     public void environmentCheck() {
-        if (!getServer().getPluginManager().isPluginEnabled("GuizhanLibPlugin")) {
-            getLogger().log(Level.SEVERE, getLocalizationService().getString("messages.depend.not-found-guizhanlib"));
-            getLogger()
-                .log(
-                    Level.SEVERE,
-                    getLocalizationService().getString("messages.depend.suggest-download-guizhanlib"));
-            return;
-        }
+        /*
+         * Ya no se exige GuizhanLibPlugin.
+         *
+         * De esa libreria solo se usaban ayudantes de nombres en chino, enlaces a su wiki y el
+         * autoactualizador. Los dos primeros se sustituyeron por cl.jackstar.networks.compat, y
+         * el tercero no lo queremos. Obligar a instalarla era pedir una dependencia entera por
+         * cuatro llamadas que no aportan nada aqui.
+         */
         try {
             minecraftVersion = MinecraftVersion.current();
         } catch (NoClassDefFoundError | NoSuchFieldError e) {

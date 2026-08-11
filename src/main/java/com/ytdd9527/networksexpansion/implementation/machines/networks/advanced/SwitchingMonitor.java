@@ -22,7 +22,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
 import io.papermc.paper.event.player.PlayerItemFrameChangeEvent;
 import lombok.SneakyThrows;
-import net.guizhanss.guizhanlib.minecraft.helper.inventory.ItemStackHelper;
+import cl.jackstar.networks.compat.TextoItems;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -110,7 +110,7 @@ public class SwitchingMonitor extends NetworkObject implements HangingBlock, Pla
         }
 
         pdc.set(ORIGINAL, PersistentDataType.STRING, DataSource.getBase64String(template));
-        meta.setDisplayName(addSuffixAmount(ItemStackHelper.getDisplayName(template), amount));
+        meta.setDisplayName(addSuffixAmount(TextoItems.nombreVisible(template), amount));
         clone.setItemMeta(meta);
         return clone;
     }

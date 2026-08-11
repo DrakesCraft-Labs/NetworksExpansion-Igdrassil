@@ -34,7 +34,7 @@ import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
-import net.guizhanss.guizhanlib.minecraft.helper.inventory.ItemStackHelper;
+import cl.jackstar.networks.compat.TextoItems;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -172,7 +172,7 @@ public class ItemFlowViewer extends NetworkObject {
                 }
 
                 String name = TextUtil.stripColor(
-                    ItemStackHelper.getDisplayName(itemStack).toLowerCase(Locale.ROOT));
+                    TextoItems.nombreVisible(itemStack).toLowerCase(Locale.ROOT));
                 if (cache.getFilter().matches("^[a-zA-Z]+$")) {
                     final String pinyinName = PinyinHelper.toPinyin(name, PinyinStyleEnum.INPUT, "");
                     final String pinyinFirstLetter = PinyinHelper.toPinyin(name, PinyinStyleEnum.FIRST_LETTER, "");
@@ -205,7 +205,7 @@ public class ItemFlowViewer extends NetworkObject {
                 }
 
                 String name = TextUtil.stripColor(
-                    ItemStackHelper.getDisplayName(itemStack).toLowerCase(Locale.ROOT));
+                    TextoItems.nombreVisible(itemStack).toLowerCase(Locale.ROOT));
                 if (cache.getFilter().matches("^[a-zA-Z]+$")) {
                     final String pinyinName = PinyinHelper.toPinyin(name, PinyinStyleEnum.INPUT, "");
                     final String pinyinFirstLetter = PinyinHelper.toPinyin(name, PinyinStyleEnum.FIRST_LETTER, "");
@@ -372,7 +372,7 @@ public class ItemFlowViewer extends NetworkObject {
                 final ItemFlowRecord.TransportAction action = validActions.get(i);
                 final ItemStack displayItemStack = getIcon(action);
                 ItemStack displayStack = new CustomItemStack(
-                    displayItemStack.clone(), TextUtil.GRAY + ItemStackHelper.getDisplayName(displayItemStack));
+                    displayItemStack.clone(), TextUtil.GRAY + TextoItems.nombreVisible(displayItemStack));
 
                 final ItemMeta itemMeta = displayStack.getItemMeta();
                 if (itemMeta == null) {
@@ -451,7 +451,7 @@ public class ItemFlowViewer extends NetworkObject {
                 }
 
                 displayStack = new CustomItemStack(
-                    displayStack, TextUtil.GRAY + ItemStackHelper.getDisplayName(displayItemStack));
+                    displayStack, TextUtil.GRAY + TextoItems.nombreVisible(displayItemStack));
 
                 final ItemMeta itemMeta = displayStack.getItemMeta();
                 if (itemMeta == null) {

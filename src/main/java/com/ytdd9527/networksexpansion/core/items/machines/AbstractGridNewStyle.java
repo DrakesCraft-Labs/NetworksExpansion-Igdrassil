@@ -33,7 +33,7 @@ import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ClickAction;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
-import net.guizhanss.guizhanlib.minecraft.helper.inventory.ItemStackHelper;
+import cl.jackstar.networks.compat.TextoItems;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -429,7 +429,7 @@ public abstract class AbstractGridNewStyle extends AbstractGrid implements Keybi
                     }
                 }
                 String name = TextUtil.stripColor(
-                    ItemStackHelper.getDisplayName(itemStack).toLowerCase(Locale.ROOT));
+                    TextoItems.nombreVisible(itemStack).toLowerCase(Locale.ROOT));
                 if (searchTerm.matches("^[a-zA-Z]+$")) {
                     final String pinyinName = PinyinHelper.toPinyin(name, PinyinStyleEnum.INPUT, "");
                     final String pinyinFirstLetter = PinyinHelper.toPinyin(name, PinyinStyleEnum.FIRST_LETTER, "");

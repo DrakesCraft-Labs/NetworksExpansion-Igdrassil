@@ -66,7 +66,6 @@ dependencies {
         exclude("com.sk89q.worldguard", "worldguard-legacy")
         exclude("com.comphenix.protocol", "ProtocolLib")
     }
-    compileOnly("net.guizhanss:GuizhanLibPlugin:1.7.6")
     compileOnly("com.github.balugaq:FluffyMachines:43d7444e4c")
     compileOnly("com.github.TimetownDev:GuguSlimefunLib:45627c6f8e")
     compileOnly("com.github.balugaq:JustEnoughGuide:7f21e113a2")

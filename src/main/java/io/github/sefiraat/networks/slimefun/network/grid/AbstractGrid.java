@@ -31,7 +31,7 @@ import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ClickAction;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
-import net.guizhanss.guizhanlib.minecraft.helper.inventory.ItemStackHelper;
+import cl.jackstar.networks.compat.TextoItems;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -292,7 +292,7 @@ public abstract class AbstractGrid extends NetworkObject {
 
                 final ItemStack itemStack = entry.getKey();
                 String name = TextUtil.stripColor(
-                    ItemStackHelper.getDisplayName(itemStack).toLowerCase(Locale.ROOT));
+                    TextoItems.nombreVisible(itemStack).toLowerCase(Locale.ROOT));
                 if (cache.getFilter().matches("^[a-zA-Z]+$")) {
                     final String pinyinName = PinyinHelper.toPinyin(name, PinyinStyleEnum.INPUT, "");
                     final String pinyinFirstLetter = PinyinHelper.toPinyin(name, PinyinStyleEnum.FIRST_LETTER, "");

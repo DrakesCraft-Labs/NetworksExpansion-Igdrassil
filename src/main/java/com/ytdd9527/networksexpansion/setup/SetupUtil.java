@@ -4,7 +4,6 @@ import com.ytdd9527.networksexpansion.implementation.ExpansionItems;
 import com.ytdd9527.networksexpansion.implementation.ExpansionItemsMenus;
 import io.github.sefiraat.networks.Networks;
 import io.github.sefiraat.networks.slimefun.NetworkSlimefunItems;
-import net.guizhanss.slimefun4.utils.WikiUtils;
 import org.bukkit.Bukkit;
 
 public class SetupUtil {
@@ -308,7 +307,7 @@ public class SetupUtil {
     }
 
     public static void setupWiki() {
-        WikiUtils.setupJson(Networks.getInstance());
+        // WikiUtils enlazaba la wiki china; retirado con la dependencia de GuizhanLib.
     }
 
     public static void setupIntegration() {

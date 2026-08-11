@@ -37,7 +37,7 @@ import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
-import net.guizhanss.guizhanlib.minecraft.helper.inventory.ItemStackHelper;
+import cl.jackstar.networks.compat.TextoItems;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -241,7 +241,7 @@ public class QuantumManager extends NetworkObject {
                 }
 
                 String name = TextUtil.stripColor(
-                    ItemStackHelper.getDisplayName(itemStack).toLowerCase(Locale.ROOT));
+                    TextoItems.nombreVisible(itemStack).toLowerCase(Locale.ROOT));
                 if (cache.getFilter().matches("^[a-zA-Z]+$")) {
                     final String pinyinName = PinyinHelper.toPinyin(name, PinyinStyleEnum.INPUT, "");
                     final String pinyinFirstLetter = PinyinHelper.toPinyin(name, PinyinStyleEnum.FIRST_LETTER, "");
@@ -401,7 +401,7 @@ public class QuantumManager extends NetworkObject {
                     displayStack = new CustomItemStack(displayStack, TextUtil.color(name));
                 } else if (!isEmpty) {
                     displayStack = new CustomItemStack(
-                        displayStack, TextUtil.GRAY + ItemStackHelper.getDisplayName(barrelItemStack));
+                        displayStack, TextUtil.GRAY + TextoItems.nombreVisible(barrelItemStack));
                 } else {
                     SlimefunItem sf = StorageCacheUtils.getSfItem(barrelLocation);
                     if (sf == null) {

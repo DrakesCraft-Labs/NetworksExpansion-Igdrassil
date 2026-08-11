@@ -27,7 +27,7 @@ import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
-import net.guizhanss.guizhanlib.minecraft.helper.MaterialHelper;
+import cl.jackstar.networks.compat.TextoItems;
 import org.bukkit.Color;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockBreakHandler;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -173,7 +173,7 @@ public abstract class NetworkDirectional extends NetworkObject {
                 String.format(
                     Lang.getString("messages.normal-operation.directional.display_name"),
                     blockFace.name(),
-                    MaterialHelper.getName(blockMaterial)));
+                    TextoItems.nombreMaterial(blockMaterial)));
             final ItemMeta itemMeta = displayStack.getItemMeta();
             itemMeta.setLore(Lang.getStringList("messages.normal-operation.directional.display_lore"));
             if (active) {
