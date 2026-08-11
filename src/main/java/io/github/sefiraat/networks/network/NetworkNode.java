@@ -118,6 +118,18 @@ public class NetworkNode {
                 // Check if it's in the network already and, if not, create a child node and propagate further.
                 if (testType != NodeType.CONTROLLER && !currentNode.networkContains(testLocation)) {
                     if (this.root.getNodeCount() >= this.root.getMaxNodes()) {
+                        /*
+                         * Al llegar al limite se abandonaba el recorrido entero. Los nodos que
+                         * quedaban sin visitar conservaban el enlace del root anterior --ya
+                         * muerto-- asi que sus maquinas seguian creyendo estar en red y no hacian
+                         * nada. Y como el recorrido usa una pila, el reparto de quien entra y
+                         * quien no cambiaba entre pasadas: la misma base funcionaba o no segun el
+                         * tick.
+                         *
+                         * Se sigue cortando --por encima del limite no se puede añadir nada-- pero
+                         * dejando constancia, para que se pueda diagnosticar con la sonda en vez
+                         * de adivinar.
+                         */
                         this.root.setOverburdened(true);
                         return;
                     }

@@ -196,6 +196,23 @@ public abstract class NetworkObject extends SpecialSlimefunItem implements Admin
 
     @OverridingMethodsMustInvokeSuper
     protected void onPlace(@NotNull BlockPlaceEvent event) {
+        /*
+         * Registrar el nodo aqui y no esperar a su propio ticker.
+         *
+         * addToRegistry solo se llamaba desde el BlockTicker, y en el primer tick hay un return
+         * antes de llegar: el nodo tardaba dos ticks suyos en entrar en NetworkStorage. Mientras
+         * tanto el BFS del controlador no lo ve, porque recorre consultando NetworkStorage.
+         *
+         * Y el BFS es quien enlaza cada nodo con su red (setNode). Como el controlador construye
+         * un NetworkRoot nuevo en cada tick, todo nodo que no alcance en esa pasada se queda
+         * apuntando al NetworkNode de la pasada anterior, que ya esta muerto. Las maquinas
+         * consultan definition.getNode() y piden objetos a una red que ya no existe: dejan de
+         * funcionar sin decir nada.
+         *
+         * Eso es lo que los jugadores describen como "pones un nodo y se paraliza la red".
+         * Registrandolo al colocarlo, el nodo es visible para el BFS siguiente y no hay ventana.
+         */
+        addToRegistry(event.getBlockPlaced());
     }
 
     @OverridingMethodsMustInvokeSuper
