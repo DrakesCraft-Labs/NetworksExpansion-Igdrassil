@@ -92,6 +92,21 @@ tasks {
         minimize()
 
         // Relocations
+        /*
+         * Misma relocalizacion de ABI que en el core.
+         *
+         * Este addon compila contra la API de Gugu, que usa io.github.thebusybiscuit y
+         * me.mrCookieSlime. Nuestro core se publica con esos paquetes movidos a
+         * com.github.drakescraft_labs para no romper los ~40 addons de DrakesCraft-Labs, asi que
+         * aqui hay que mover las referencias al mismo sitio o este addon no encontraria nada.
+         *
+         * Si algun dia se deja de relocalizar el core, hay que quitar estas tres lineas a la vez.
+         * Van juntas o no van.
+         */
+        relocate("io.github.thebusybiscuit", "com.github.drakescraft_labs")
+        relocate("me.mrCookieSlime.Slimefun", "com.github.drakescraft_labs.slimefun4.legacy")
+        relocate("me.mrCookieSlime.CSCoreLibPlugin", "com.github.drakescraft_labs.slimefun4.legacy.CSCoreLibPlugin")
+
         relocate("org.bstats", "io.github.sefiraat.networks.bstats")
         relocate("io.papermc.lib", "dev.sefiraat.cultivation.paperlib")
         relocate("net.byteflux.libby", "com.balugaq.netex.libraries.libby")
