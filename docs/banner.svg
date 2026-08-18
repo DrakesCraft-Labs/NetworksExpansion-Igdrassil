@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 240" width="920" height="240">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090d16"/>
+      <stop offset="100%" stop-color="#111827"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0EA5E9"/>
+      <stop offset="100%" stop-color="#7DD3FC"/>
+    </linearGradient>
+  </defs>
+  <rect width="920" height="240" rx="20" fill="url(#bg)"/>
+  <rect x="12" y="12" width="896" height="216" rx="14" fill="none" stroke="url(#accent)" stroke-width="3" opacity="0.3"/>
+  <circle cx="760" cy="120" r="140" fill="url(#accent)" opacity="0.08"/>
+  <text x="60" y="95" font-family="'Inter', -apple-system, sans-serif" font-size="40" font-weight="900" fill="#ffffff">NetworksExpansion-Igdrassil</text>
+  <text x="60" y="135" font-family="'Inter', -apple-system, sans-serif" font-size="18" font-weight="600" fill="#7DD3FC">DrakesCraft Labs • Slimefun 1.21.11</text>
+  <text x="60" y="175" font-family="'Inter', -apple-system, sans-serif" font-size="14" font-weight="400" fill="#94a3b8">Java 21 LTS • Paper / Purpur / Folia 1.21.11 • High Performance</text>
+</svg>
