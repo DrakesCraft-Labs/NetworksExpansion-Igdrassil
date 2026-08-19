@@ -34,3 +34,13 @@
 另外，感谢 **mc.talosmp.net** 的 **GentlemanCheesy** 成为[本人](https://github.com/Sefiraat)的首位赞助者！每个月能多喝一杯咖啡让我能有动力更好地编写插件。
 
 感谢 [m1919810 / matl114](https://github.com/m1919810) — 帮助[我](https://github.com/balugaq)找到了一些[网络拓展](https://github.com/balugaq/NetworksExpansion)的 bug
+
+## ⚖️ Upstream Attribution & License / Licencia y Créditos
+
+- **Original Project / Upstream**: Slimefun4 Community Addon.
+- **Port & Maintenance**: DrakesCraft Labs team (Compatibility for Paper / Purpur 1.21.11).
+- **License**: GPL-3.0 / MIT.
+- **Source Code**: [GitHub Repository](https://github.com/DrakesCraft-Labs/NetworksExpansion-Igdrassil)
+- **Support & Issues**: [GitHub Issues](https://github.com/DrakesCraft-Labs/NetworksExpansion-Igdrassil/issues) | [Discord](https://discord.gg/rR7FbfCt9Y)
+
+*This project is an open-source derivative work maintained by DrakesCraft Labs under the terms of its original license. All original assets and concepts belong to their respective creators.*
